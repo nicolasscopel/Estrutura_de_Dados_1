@@ -2,8 +2,8 @@
 os que são dígitos em outra pilha P2. Ao final, desempilhe os dados de P2 e em seguida, os de P1, imprimindo-os
 na tela.
 Dicas:
-− Use as funções isdigit e isalpha da biblioteca “#include <cctype>”
-− A pilha P1 deve armazenar letras. Dessa forma, altere o arquivo “pilha.hpp” para atender esta
+− Use as funções isdigit e isalpha da biblioteca
+− A pilha P1 deve armazenar letras. Dessa forma, altere o arquivo para atender esta
 necessidade.
 */
 
@@ -14,6 +14,7 @@ necessidade.
 #include <iomanip>
 #include <ctime>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -25,5 +26,22 @@ main()
 {
 	srand(time(NULL));
 	setlocale (LC_ALL, "Portuguese");
+
+    Pilha p1;
+    Pilha p2;
+	string leitura;
+	int tam;
+
+
+	cout << "\nInforme uma string para ser lida: ";
+	getline(cin,leitura);
+
+	cout << leitura;
+
+	tam = leitura.size();
+
+	cout << tam;
+
+	for(int i = 0; i < tam; i++)
 
 }
