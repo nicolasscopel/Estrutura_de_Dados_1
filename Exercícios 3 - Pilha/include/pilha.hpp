@@ -152,6 +152,33 @@ bool buscaP(Pilha *p, int valor)
 
 }
 
+///CONTA VALORES DA PILHA
+int contP(Pilha *p, int tamPilha)
+{
+    Pilha aux;
+    inicializaP(&aux, tamPilha);
+    int v, cont = 0;
+
+
+    while(! vaziaP(p))
+    {
+        v = desempilhaP(p);
+        empilhaP(&aux, v);
+        cont++;
+
+    }
+
+    while(! vaziaP(&aux))
+    {
+        v = desempilhaP(&aux);
+        empilhaP(p, v);
+
+    }
+
+    destroiP(&aux);
+    return cont;
+}
+
 
 
 #endif // _HPP_PILHA
