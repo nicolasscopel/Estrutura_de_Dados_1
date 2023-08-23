@@ -179,6 +179,40 @@ int contP(Pilha *p, int tamPilha)
     return cont;
 }
 
+bool buscaPAux(Pilha *p, int valor, int tamPilha)
+{
+    Pilha aux;
+    inicializaP(&aux, tamPilha);
+    int v, cont = 0;
+    bool achou = false;
+
+
+    while(! vaziaP(p))
+    {
+        v = desempilhaP(p);
+        empilhaP(&aux, v);
+
+        if(v == valor)
+        {
+            achou = true;
+            continue;
+
+        }
+
+    }
+
+    while(! vaziaP(&aux))
+    {
+        v = desempilhaP(&aux);
+        empilhaP(p, v);
+
+    }
+
+    destroiP(&aux);
+    return achou;
+
+
+}
 
 
 #endif // _HPP_PILHA

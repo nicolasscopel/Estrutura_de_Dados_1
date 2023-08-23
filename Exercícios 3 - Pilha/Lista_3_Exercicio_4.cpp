@@ -25,4 +25,38 @@ main()
 	srand(time(NULL));
 	setlocale (LC_ALL, "Portuguese");
 
+	Pilha p1;
+	int tamPilha, valor;
+	bool resultado;
+
+	cout << "\nInforme o numero de cidades: ";
+	cin >> tamPilha;
+
+	inicializaP(&p1, tamPilha);
+
+	for(int i = 0; i < tamPilha; i++)
+    {
+        cout << "\nInforme o código da " << i << " cidade: ";
+        cin >> valor;
+
+        empilhaP(&p1, valor);
+    }
+
+    cout << "\nInforme o código para buscar na pilha: ";
+    cin >> valor;
+
+    mostraP(&p1);
+
+    resultado = buscaPAux(&p1, valor, tamPilha);
+
+    if(resultado)
+    {
+        cout << "\nCódigo encontrado na pilha!";
+    }
+    else
+    {
+        cout << "\nCódigo não encontrado na pilha!";
+    }
+
+
 }

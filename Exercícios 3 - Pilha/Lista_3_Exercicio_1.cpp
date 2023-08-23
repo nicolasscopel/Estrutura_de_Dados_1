@@ -24,24 +24,68 @@ using namespace std;
 
 main()
 {
-	srand(time(NULL));
-	setlocale (LC_ALL, "Portuguese");
+    srand(time(NULL));
+    setlocale (LC_ALL, "Portuguese");
 
     Pilha p1;
     Pilha p2;
-	string leitura;
-	int tam;
+    string leitura;
+    int tam;
+    char c;
 
 
-	cout << "\nInforme uma string para ser lida: ";
-	getline(cin,leitura);
+    cout << "\nInforme uma string para ser lida: ";
+    getline(cin,leitura);
 
-	cout << leitura;
 
-	tam = leitura.size();
 
-	cout << tam;
+    tam = leitura.size();
 
-	for(int i = 0; i < tam; i++)
+    inicializaP(&p1,tam);
+    inicializaP(&p2,tam);
+
+
+
+    for(int i = 0; i < tam; i++)
+    {
+        if(isalpha(leitura[i]))
+        {
+            c = leitura[i];
+            empilhaP(&p1, c);
+        }
+
+        if(isdigit(leitura[i]))
+        {
+            c = leitura[i];
+            empilhaP(&p2, c);
+        }
+    }
+
+
+
+    cout << "\nP2: ";
+    while(!vaziaP(&p2))
+    {
+        cout << desempilhaP(&p2);
+    }
+
+    cout << "\nP1: ";
+    while(!vaziaP(&p1))
+    {
+
+        cout << desempilhaP(&p1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
