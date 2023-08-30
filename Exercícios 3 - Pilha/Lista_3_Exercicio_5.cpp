@@ -20,7 +20,27 @@ o Sair do programa
 
 using namespace std;
 
-#include "include/pilha.hpp"
+struct Caixa
+{
+    int codigo;
+    float peso;
+
+    Caixa()
+    {
+        codigo = 0;
+        peso = 0;
+    }
+
+    Caixa(int c, float p)
+    {
+        codigo = c;
+        peso = p;
+    }
+};
+
+#include "include/pilhacaixa.hpp"
+
+
 
 
 
@@ -28,5 +48,11 @@ main()
 {
 	srand(time(NULL));
 	setlocale (LC_ALL, "Portuguese");
+
+	Pilha p1;
+
+	inicializaP(&p1,10);
+
+
 
 }

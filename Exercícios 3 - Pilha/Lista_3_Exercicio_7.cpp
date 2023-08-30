@@ -30,11 +30,11 @@ main()
     bool resultado;
 
     inicializaP(&p1, tamp1);
-    empilhaP(&p1, 13);
-    empilhaP(&p1, 11);
-    empilhaP(&p1, 9);
-    empilhaP(&p1, 7);
-    empilhaP(&p1, 5);
+    //empilhaP(&p1, 13);
+    //empilhaP(&p1, 11);
+    //empilhaP(&p1, 9);
+    //empilhaP(&p1, 7);
+    //empilhaP(&p1, 5);
     empilhaP(&p1, 3);
     empilhaP(&p1, 1);
 
@@ -64,20 +64,14 @@ main()
             valor = desempilhaP(&p1);
             empilhaP(&p3, valor);
         }
-        else
-        {
-           continue;
-        }
+
 
         if(!vaziaP(&p2))
         {
             valor = desempilhaP(&p2);
             empilhaP(&p3, valor);
         }
-        else
-        {
-            continue;
-        }
+
 
     }
 

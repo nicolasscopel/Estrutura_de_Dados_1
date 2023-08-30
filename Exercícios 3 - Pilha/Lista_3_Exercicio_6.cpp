@@ -16,8 +16,6 @@ using namespace std;
 
 #include "include/pilha.hpp"
 
-
-
 main()
 {
 	srand(time(NULL));
@@ -29,7 +27,6 @@ main()
 	int tam = 32;
 
 	inicializaP(&p1,tam);
-
 
 	do
 	{
@@ -92,14 +89,7 @@ main()
                 break;
             }
 
-
-
-
-
 	    }
-
-
-
 
 	}while(menu != 0);
 
