@@ -6,7 +6,7 @@
 
 struct NoPilha
 {
-    Cadastro dado; //informação do nó
+    Ficha dado; //informação do nó
     NoPilha *prox; //próximo elemento
 };
 
@@ -30,22 +30,22 @@ bool vaziaP(Pilha *p)
 
 
 //push
-bool empilhaP(Pilha *p, Cadastro valor)
+bool empilhaP(Pilha *p, Ficha dado)
 {
     NoPilha *novo =  new NoPilha(); //cria um novo nó
     if (novo == NULL) /// sistema não conseguiu alocar a memória
         return false;
 
-    novo->dado = Cadastro ; //armazena a informação no nó
+    novo->dado = dado ; //armazena a informação no nó
     novo->prox = p->topo; //o próximo elemento do nó criado será o último elemento da pilha
     p->topo = novo; //atualiza o topo da pilha para o nó criado.
     return true;
 }
 
 //pop
-int desempilhaP(Pilha *p)
+Ficha desempilhaP(Pilha *p)
 {
-    int dado = 0;
+   Ficha dado;
 
     // se não estiver vazia, retira valor
     if (vaziaP(p) == false)
@@ -61,9 +61,9 @@ int desempilhaP(Pilha *p)
 }
 
 //peek
-int espiaP(Pilha* p)
+Ficha espiaP(Pilha* p)
 {
-    int dado = 0;
+    Ficha dado;
 
     if (vaziaP(p) == false)
         dado = p->topo->dado;
@@ -88,7 +88,7 @@ void mostraP(Pilha *p)
         {
             cout << setfill(' ') << std::setw(13) << no << " | ";
             cout << setfill(' ') << std::setw(13) << no->prox << " | ";
-            cout << setfill(' ') << std::setw(10) << no->dado << " |" << endl;
+            cout << setfill(' ') << std::setw(10) << no->dado.codigo << ", "<< no->dado.nome << ", " << no->dado.idade << ", " << no->dado.saldo << " |" << endl;
 
             no = no->prox;
         }
@@ -98,13 +98,13 @@ void mostraP(Pilha *p)
 
 /// retorna true se o valor existe na pilha
 /// retorna false se o valor não existe na pilha
-bool buscaP(Pilha *p, int dado)
+bool buscaViaCodigoP(Pilha *p, int codigo)
 {
 
     NoPilha *no = p->topo;
     while (no != NULL)
     {
-        if(no->dado == dado)
+        if(no->dado.codigo == codigo)
             return true;
 
         no = no->prox;
@@ -116,7 +116,7 @@ bool buscaP(Pilha *p, int dado)
 
 void destroiP(Pilha *p)
 {
-    int dado;
+    Ficha dado;
     while(vaziaP(p) == false)
         dado = desempilhaP(p); //desempilha e descarta o valor desempilhado
 }
