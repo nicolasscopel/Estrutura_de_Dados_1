@@ -1,8 +1,8 @@
-/* O banco BanPasso possui diversos clientes. O cadastro de novos clientes do banco é realizado perante o
-preenchimento de uma ficha, a qual possui os seguintes dados: código, nome, idade, saldo em conta (valor do
-depósito inicial). Com a ficha de um cliente preenchida, o cadastro é concluído empilhando na pilha CADASTRO.
-Não pode haver clientes com o mesmo código cadastrado e a ficha é empilhada sempre mantendo a ordem
-alfabética dos clientes como no exemplo baixo: */
+/* O banco BanPasso possui diversos clientes. O cadastro de novos clientes do banco Ã© realizado perante o
+preenchimento de uma ficha, a qual possui os seguintes dados: cÃ³digo, nome, idade, saldo em conta (valor do
+depÃ³sito inicial). Com a ficha de um cliente preenchida, o cadastro Ã© concluÃ­do empilhando na pilha CADASTRO.
+NÃ£o pode haver clientes com o mesmo cÃ³digo cadastrado e a ficha Ã© empilhada sempre mantendo a ordem
+alfabÃ©tica dos clientes como no exemplo baixo: */
 
 #include <iostream>
 #include <stdio.h>
@@ -15,7 +15,7 @@ alfabética dos clientes como no exemplo baixo: */
 
 using namespace std;
 
-struct Ficha
+struct Ficha 
 {
     int codigo;
     string nome;
