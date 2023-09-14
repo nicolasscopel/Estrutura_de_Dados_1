@@ -69,6 +69,8 @@ main()
     srand(time(NULL));
     setlocale (LC_ALL, "Portuguese");
 
+    Documentos x;
+
     if (!arq.is_open())
     {
         cout << "Informe o nome do arquivo corretamente!\n";
@@ -153,19 +155,23 @@ main()
 
             if(!vaziaF(&P))
             {
-                desenfileiraF(&P);
+               x = desenfileiraF(&P);
+               cout << "\nO documento " << x.nome << " foi impresso.";
 
             }
-            else
+            else if(!vaziaF(&N))
             {
-                desenfileiraF(&N);
+               x =  desenfileiraF(&N);
+               cout << "\nO documento " << x.nome << " foi impresso.";
             }
 
 
             if(vaziaF(&P) && vaziaF(&N))
             {
                 cout << "\nNão há documentos para imprimir";
+                continue;
             }
+
 
         }
         else if(operacao == "CONSULTAR") ///FEITA
@@ -283,14 +289,17 @@ main()
 
         }
 
-        else if(operacao == "TOTALPAG")
+        else if(operacao == "TOTALPAG") ///FEITA
         {
-            int somatorio = 0;
+            int somaP = 0;
+            int somaN = 0;
 
-            somatorio = contapaginasF(&P,somatorio);
-            somatorio += contapaginasF(&N,somatorio);
+            somaP = contapaginasF(&P,somaP);
+            somaN = contapaginasF(&N,somaN);
 
-            cout << "\n"<< somatorio << " página (s)";
+            somaP += somaN;
+
+            cout << "\n"<< somaP << " página (s)";
         }
 
 

@@ -163,6 +163,7 @@ bool consultaF(Fila *f, string nome)
             return true;
 
         }
+        idx++;
         if(idx >= f->tam)
                 idx=0; //circular
     }
@@ -177,9 +178,11 @@ int contapaginasF(Fila *f, int soma)
     {
         soma += f->dados[idx].paginas;
 
+        idx++;
         if(idx >= f->tam)
                 idx=0; //circular
     }
+
 
     return soma;
 
