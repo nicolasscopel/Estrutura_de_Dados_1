@@ -93,11 +93,11 @@ void mostraF(Fila *f)
         NoFila *no = f->inicio;
         while (no != NULL) //faça enquanto (no != NULL)
         {
-            cout << no->dado.idade; // REFAZER
+            cout << no->dado.nome << "-" << no->dado.idade << "-" << no->dado.tipo << "-" << no->dado.quadro; // REFAZER
             no = no->prox;
 
             if(no != NULL) //verifica se o próximo nó não é nulo (no != NULL)
-                cout << ", ";
+                cout << " ||| ";
         }
         cout << "]" << endl;
     }

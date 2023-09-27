@@ -13,6 +13,7 @@ Não Prioritária deve ser atendida (caso houver);
 b. Não havendo fichas na Fila Não Prioritária, o sistema pode atender mais que três fichas
 consecutivas da Fila Prioritária.
 2. Por fim, quando não há fichas na Fila Prioritária, uma ficha da Fila Não Prioritária deve ser atendida.
+
 Quando uma ficha é atendida, o funcionário da empresa retira a ficha da fila e guarda em uma pilha, sendo
 que as fichas dos animais do tipo S são empilhadas na pilha ANIMALS e as fichas dos animais do tipo D são empilhadas
 na pilha ANIMALD.
@@ -54,8 +55,8 @@ struct Ficha
     {
         nome = "";
         idade = 0;
-        tipo = '';
-        quadro = '';
+        tipo = ' ';
+        quadro = ' ';
     }
 
     Ficha(string n, int i, char t, char q)
@@ -74,12 +75,234 @@ struct Ficha
 
 main()
 {
-	srand(time(NULL));
-	setlocale (LC_ALL, "Portuguese");
+    srand(time(NULL));
+    setlocale (LC_ALL, "Portuguese");
 
-	Fila p;
-	Fila n;
-	Pilha s;
-	Pilha d;
+    Fila P; // PRIORITARIO ESTADO GRAVE
+    Fila N;  //N PRIORITARIO ESTADO ESTÁVEL
+    Pilha ANIMALS; //SELVAGEM
+    Pilha ANIMALD; //DOMESTICO
+    char menu;
+
+    string nome;
+    int idade, cont = 0;
+    char tipo, quadro;
+    Ficha x;
+
+
+    do
+    {
+        system("cls");
+
+        cout << "------------------- MENU -------------------" << endl;
+        cout << "a - Criar ficha                            -" << endl;
+        cout << "b - Atender ficha da fila                  -" << endl;
+        cout << "c - Mostrar os dados das fichas            -" << endl;
+        cout << "d - Listar as informações sobre as filas   -" << endl;
+        cout << "e - Listar as fichas já atendidas          -" << endl;
+        cout << "f - Remover uma ficha da pilha             -" << endl;
+        cout << "g - Mostrar o nome do animal               -" << endl;
+        cout << "h - Sair do Programa                       -" << endl;
+        cout << "--------------------------------------------" << endl;
+        cout << "Sua escolha: ";
+        cin >> menu;
+
+
+        switch(menu)
+        {
+
+        case 'a':
+        {
+            system("cls");
+
+            cout << "Informe o nome do animal: ";
+            cin >> nome;
+            fflush(stdin);
+
+            cout << "Informe a idade do animal: ";
+            cin >> idade;
+            fflush(stdin);
+
+            cout << "Informe o tipo do animal(S - Selvagem, D - Domestico): ";
+            cin >> tipo;
+            fflush(stdin);
+
+            cout << "Informe o quadro do animal(G - Grave, E - Estavel): ";
+            cin >> quadro;
+            fflush(stdin);
+
+            if(quadro == 'G') ///FILA PRIORITÁRIA
+            {
+                enfileiraF(&P, Ficha(nome,idade,tipo,quadro));
+            }
+
+            if(quadro == 'E') ///FILA NÃO-PRIORITÁRIA
+            {
+                enfileiraF(&N, Ficha(nome,idade,tipo,quadro));
+            }
+
+            cout << nome <<" adicionado a fila de atendimento!\n";
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'b':
+        {
+            system("cls");
+
+            if(vaziaF(&P) && vaziaF(&N))
+            {
+                cout << "\nAmbas as filas estão vazias!\n";
+                system("pause");
+                continue;
+            }
+
+           if(!vaziaF(&P))
+           {
+               if(cont != 3)
+               {
+                   x = desenfileiraF(&P);
+                   cout << "\nO animal " << x.nome << " entrou para antendimento!\n";
+                   cont++;
+               }
+
+              if(cont == 3 && !vaziaF(&P))
+               {
+                   x = desenfileiraF(&N);
+                   cout << "\nO animal " << x.nome << " entrou para antendimento!\n";
+                   cont = 0;
+               }
+
+               if(cont == 3 && vaziaF(&N))
+               {
+                   x = desenfileiraF(&P);
+                   cout << "\nO animal " << x.nome << " entrou para antendimento!\n";
+
+               }
+
+
+           }
+           else if(!vaziaF(&N))
+           {
+               x = desenfileiraF(&N);
+               cout << "\nO animal " << x.nome << " entrou para antendimento!\n";
+
+           }
+
+           if(x.tipo == 'S')
+           {
+               cout << "cacete";
+           }
+           else
+           {
+               cout << "buas";
+           }
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'c':
+        {
+            system("cls");
+            cout << "\nFila Prioritaria\n";
+            mostraF(&P);
+            cout << "\nFila Nao-Prioritaria\n";
+            mostraF(&N);
+
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'd':
+        {
+            system("cls");
+
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'e':
+        {
+            system("cls");
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'f':
+        {
+            system("cls");
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'g':
+        {
+            system("cls");
+
+
+
+            system("pause");
+            break;
+
+        }
+
+        case 'h':
+        {
+            system("cls");
+
+            cout << "\nPrograma Finalizado!\n";
+
+
+            system("pause");
+            break;
+
+        }
+
+        default:
+        {
+            system("cls");
+
+            cout << "\nOpcao Incorreta!\n";
+
+            system("pause");
+            break;
+
+        }
+
+        }
+
+    }
+    while(menu != 'h');
+
+
+
+
+
+
+
 
 }
