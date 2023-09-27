@@ -15,7 +15,7 @@ alfabética dos clientes como no exemplo baixo: */
 
 using namespace std;
 
-struct Ficha 
+struct Ficha
 {
     int codigo;
     string nome;
@@ -83,13 +83,6 @@ main()
 	insereOrdenadoP(&p1, Ficha(4,"Maria",60,2000));
 
 	mostraP(&p1);
-
-
-
-
-
-
-
 
 
 }
