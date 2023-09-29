@@ -4,7 +4,7 @@
 
 struct NoFila
 {
-    Ficha dado; //informacao do nó
+    int dado; //informacao do nó
     NoFila *prox; //proximo elemento da fila
 };
 
@@ -30,7 +30,7 @@ bool vaziaF(Fila *f)
 
 
 //Enqueue
-bool enfileiraF(Fila *f, Ficha dado)
+bool enfileiraF(Fila *f, int dado)
 {
     NoFila *novo = new NoFila();
     if (novo == NULL) /// não conseguiu alocar memória (novo == NULL)
@@ -48,9 +48,9 @@ bool enfileiraF(Fila *f, Ficha dado)
 }
 
 //Dequeue
-Ficha desenfileiraF(Fila *f)
+int desenfileiraF(Fila *f)
 {
-    Ficha dado;
+    int dado = 0;
 
     // se não estiver vazia, retira valor
     if (vaziaF(f) == false) //verifica se a fila não está vazia, ou seja, (f->inicio != NULL)
@@ -68,9 +68,9 @@ Ficha desenfileiraF(Fila *f)
 }
 
 //peek
-Ficha espiaF(Fila* f)
+int espiaF(Fila* f)
 {
-    Ficha dado;
+    int dado = 0;
 
     if (vaziaF(f) == false) //verifica se a fila não está vazia, ou seja, (f->inicio != NULL)
     {
@@ -81,39 +81,79 @@ Ficha espiaF(Fila* f)
 }
 
 //show
-void mostraF(Fila *f)
+void mostraFP(Fila *f)
 {
-    cout << "Fila: ";
+    cout << "\nFila P: ";
 
     if(vaziaF(f) == false) //verifica se a fila não está vazia
     {
 
-        cout << "[";
+        NoFila *no = f->inicio;
+        while (no != NULL) //faça enquanto (no != NULL)
+        {
+            cout << no->dado;
+            no = no->prox;
+
+            if(no != NULL) //verifica se o próximo nó não é nulo (no != NULL)
+                cout << ", ";
+        }
+
+    }
+    else
+        cout << "vazia;";
+}
+void mostraFN(Fila *f)
+{
+    cout << "\nFila N: ";
+
+    if(vaziaF(f) == false) //verifica se a fila não está vazia
+    {
 
         NoFila *no = f->inicio;
         while (no != NULL) //faça enquanto (no != NULL)
         {
-            cout << no->dado.nome << "-" << no->dado.idade << "-" << no->dado.tipo << "-" << no->dado.quadro; // REFAZER
+            cout << no->dado;
             no = no->prox;
 
             if(no != NULL) //verifica se o próximo nó não é nulo (no != NULL)
-                cout << " ||| ";
+                cout << ", ";
         }
-        cout << "]" << endl;
+
     }
     else
-        cout << "vazia!\n";
+        cout << "vazia;";
+}
+void mostraFD(Fila *f)
+{
+    cout << "\nFila D: ";
+
+    if(vaziaF(f) == false) //verifica se a fila não está vazia
+    {
+
+        NoFila *no = f->inicio;
+        while (no != NULL) //faça enquanto (no != NULL)
+        {
+            cout << no->dado;
+            no = no->prox;
+
+            if(no != NULL) //verifica se o próximo nó não é nulo (no != NULL)
+                cout << ", ";
+        }
+
+    }
+    else
+        cout << "vazia;";
 }
 
 // retorna true se o valor existe na fila
 // retorna false se o valor não existe na fila
-bool buscaF(Fila *f, string nome)
+bool buscaF(Fila *f, int dado)
 {
 
     NoFila *no = f->inicio;
     while (no != NULL) //faça enquanto (no != NULL)
     {
-        if(no->dado.nome == nome)
+        if(no->dado == dado)
             return true;
 
         no = no->prox;

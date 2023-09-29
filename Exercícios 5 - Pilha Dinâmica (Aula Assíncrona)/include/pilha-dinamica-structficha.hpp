@@ -78,17 +78,17 @@ void mostraP(Pilha *p)
 
     if(vaziaP(p) == false)
     {
-        cout << "--------------------------------------------" << endl;
+        cout << "----------------------------------------------------------------" << endl;
         cout << setfill(' ') << std::setw(13) << "Nó" << " | ";
         cout << setfill(' ') << std::setw(13) << "Prox" << " | ";
-        cout << setfill(' ') << std::setw(10) << "Dado" << " |" << endl;
-        cout << "--------------------------------------------" << endl;
+        cout << setfill(' ') << std::setw(30) << "Dado" << " |" << endl;
+        cout << "----------------------------------------------------------------" << endl;
         NoPilha *no = p->topo;
         while (no != NULL)
         {
             cout << setfill(' ') << std::setw(13) << no << " | ";
             cout << setfill(' ') << std::setw(13) << no->prox << " | ";
-            cout << setfill(' ') << std::setw(10) << no->dado.codigo << ", "<< no->dado.nome << ", " << no->dado.idade << ", " << no->dado.saldo << " |" << endl;
+            cout << setfill(' ') << std::setw(20) << no->dado.codigo << ", "<< no->dado.nome << ", " << no->dado.idade << ", " << no->dado.saldo << " |" << endl;
 
             no = no->prox;
         }

@@ -14,7 +14,8 @@ struct Pilha
 {
     NoPilha *topo;
 
-    Pilha(){ //Construtor. Inicialização da pilha
+    Pilha()  //Construtor. Inicialização da pilha
+    {
         topo = nullptr;
     }
 };
@@ -45,7 +46,7 @@ bool empilhaP(Pilha *p, Ficha dado)
 //pop
 Ficha desempilhaP(Pilha *p)
 {
-   Ficha dado;
+    Ficha dado;
 
     // se não estiver vazia, retira valor
     if (vaziaP(p) == false)
@@ -74,26 +75,24 @@ Ficha espiaP(Pilha* p)
 
 void mostraP(Pilha *p)
 {
-    cout << "PILHA: " << endl;
+    cout << "\nPILHA: {";
 
     if(vaziaP(p) == false)
     {
-        cout << "----------------------------------------------------------------------------------------" << endl;
-        cout << setfill(' ') << std::setw(13) << "Nó" << " | ";
-        cout << setfill(' ') << std::setw(13) << "Prox" << " | ";
-        cout << setfill(' ') << std::setw(30) << "Dado" << " |" << endl;
-        cout << "----------------------------------------------------------------------------------------" << endl;
+
         NoPilha *no = p->topo;
         while (no != NULL)
         {
-            cout << setfill(' ') << std::setw(13) << no << " | ";
-            cout << setfill(' ') << std::setw(13) << no->prox << " | ";
-            cout << setfill(' ') << std::setw(10) << no->dado.codigo << ", "<< no->dado.nome << ", " << no->dado.idade << ", " << no->dado.saldo << " |" << endl;
+            cout << "[ " << no->dado.nome << ", c= "<< no->dado.codigo << ", i= " << no->dado.idade << ", s= " << no->dado.saldo << " ]";
 
             no = no->prox;
+            if(no != NULL)
+            {
+                cout << ", \n";
+            }
         }
-        cout << "--------------------------------------------" << endl;
     }
+    cout << "} ";
 }
 
 /// retorna true se o valor existe na pilha
@@ -121,8 +120,112 @@ void destroiP(Pilha *p)
         dado = desempilhaP(p); //desempilha e descarta o valor desempilhado
 }
 
-#endif // _HPP_PILHA_DINAMICA
+Ficha retiraDados(Pilha *p, int codigo)
+{
+    Ficha dado;
 
+    NoPilha *no = p->topo;
+    while (no != NULL)
+    {
+        if(no->dado.codigo == codigo)
+        {
+            dado = no->dado;
+            return dado;
+        }
+        else
+        {
+            no = no->prox;
+        }
+
+    }
+
+}
+
+float somaSaldo(Pilha *p)
+{
+    float soma = 0;
+
+    NoPilha *no = p->topo;
+    while (no != NULL)
+    {
+        soma += no->dado.saldo;
+
+        no = no->prox;
+    }
+
+    return soma;
+}
+
+void sacaViaCodigoP(Pilha *p, int codigo, int valor)
+{
+
+    NoPilha *no = p->topo;
+    while (no != NULL)
+    {
+        if(no->dado.codigo == codigo)
+        {
+            no->dado.saldo -= valor;
+            return;
+        }
+        else
+        {
+            no = no->prox;
+        }
+    }
+
+}
+
+void depositoViaCodigoP(Pilha *p, int codigo, int valor)
+{
+
+    NoPilha *no = p->topo;
+    while (no != NULL)
+    {
+        if(no->dado.codigo == codigo)
+        {
+            no->dado.saldo += valor;
+            return;
+        }
+        else
+        {
+            no = no->prox;
+        }
+    }
+
+}
+
+int contaNegativados(Pilha *p)
+{
+   int cont = 0;
+
+    NoPilha *no = p->topo;
+    while (no != NULL)
+    {
+        if(no->dado.saldo < 0)
+        {
+              cont++;
+        }
+
+        no = no->prox;
+    }
+
+    return cont;
+}
+
+int contaCadastrados(Pilha *p)
+{
+   int cont = 0;
+
+    NoPilha *no = p->topo;
+    while (no != NULL)
+    {
+        cont++;
+        no = no->prox;
+    }
+
+    return cont;
+}
+#endif // _HPP_PILHA_DINAMICA
 
 
 

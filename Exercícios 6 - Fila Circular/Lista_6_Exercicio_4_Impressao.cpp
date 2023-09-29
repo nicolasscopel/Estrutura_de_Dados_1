@@ -28,6 +28,7 @@ a mensagem “FILA VAZIA” se a fila estiver vazia.
 O programa deve imprimir na saída o resultado de cada operação especificada na entrada, um resultado por
 linha. Um exemplo de entrada e saída é ilustrado no quadro abaixo.*/
 
+#include <unistd.h>
 #include <iostream>
 #include <stdio.h>
 #include <cstdio>
@@ -304,7 +305,7 @@ main()
 
 
 
-
+    usleep(1000000);
 
     }
 
