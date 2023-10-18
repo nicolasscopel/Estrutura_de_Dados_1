@@ -1,0 +1,44 @@
+1 - P1 (qtd=11) foi adicionado(a) na fila F1
+2 - P2 (qtd=12) foi adicionado(a) na fila F1
+3 - P3 (qtd=13) foi adicionado(a) na fila F1
+4 - P4 (qtd=14) foi adicionado(a) na fila F2
+5 - P5 (qtd=1) foi adicionado(a) na fila F2
+6 - P6 (qtd=2) foi adicionado(a) na fila F2
+7 - P7 (qtd=3) foi adicionado(a) na fila F2
+8 - P8 (qtd=4) foi adicionado(a) na fila F2
+9 - P9 (qtd=5) foi adicionado(a) na fila F2
+10 - P10 (qtd=6) foi adicionado(a) na fila F1
+11 - P11 (qtd=7) foi adicionado(a) na fila F2
+12 - P12 (qtd=8) foi adicionado(a) na fila F1
+13 - Erro: P12 já está em uma fila!
+14 -
+Fila F1: {[P1, s=M, t=R, q=11], [P2, s=M, t=L, q=12], [P3, s=M, t=R, q=13], [P10, s=M, t=L, q=6], [P12, s=F, t=L, q=8]}
+Fila F2: {[P4, s=M, t=R, q=14], [P5, s=M, t=L, q=1], [P6, s=M, t=L, q=2], [P7, s=F, t=R, q=3], [P8, s=F, t=L, q=4], [P9, s=M, t=L, q=5], [P11, s=F, t=R, q=7]}
+15 - Quantidade de pessoas: 12; Percentual do sexo M: 66.67%; Quantidade de livros: 38; Quantidade de roupas: 48;
+16 - Fila F1 Ordenada: {[P10, s=M, t=L, q=6], [P12, s=F, t=L, q=8], [P1, s=M, t=R, q=11], [P2, s=M, t=L, q=12], [P3, s=M, t=R, q=13]}
+17 - Fila F2 Ordenada: {[P5, s=M, t=L, q=1], [P6, s=M, t=L, q=2], [P7, s=F, t=R, q=3], [P8, s=F, t=L, q=4], [P9, s=M, t=L, q=5], [P11, s=F, t=R, q=7], [P4, s=M, t=R, q=14]}
+18 - P7 sexo(F) possui a menor quantidade de itens (3)
+19 - P5 sexo(M) possui a menor quantidade de itens (1)
+20 - P1 foi atendido na fila F1.
+21 - P4 foi atendido na fila F2.
+22 - P2 foi atendido na fila F1.
+23 - P5 foi atendido na fila F2.
+24 - P3 foi atendido na fila F1.
+25 - P6 foi atendido na fila F2.
+26 - P10 foi atendido na fila F1.
+27 - P7 foi atendido na fila F2.
+28 - P12 foi atendido na fila F1.
+29 - P8 foi atendido na fila F2.
+30 - P9 foi atendido na fila F2.
+31 - P11 foi atendido na fila F2.
+32 - Erro: filas vazias.
+33 - Erro: filas vazias.
+34 -
+Fila F1: vazia!
+Fila F2: vazia!
+35 - Fila F1 Ordenada: vazia!
+36 - Fila F2 Ordenada: vazia!
+37 - Quantidade de pessoas: 0; Percentual do sexo M: 0.00%; Quantidade de livros: 0; Quantidade de roupas: 0;
+38 - Erro: filas vazias.
+39 - Erro: filas vazias.
+40 - Erro: filas vazias.
