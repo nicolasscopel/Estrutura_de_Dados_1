@@ -26,10 +26,12 @@ main()
     No* aux; //usado na busca
     No* lista; //evite usar "list", pois é uma palavra reservada
     No* lista2; //evite usar "list", pois é uma palavra reservada
+    No *listauniao;
 
 
     inicializaL(&lista);
     inicializaL(&lista2);
+    inicializaL(&listauniao);
 
 
     insereInicioL(&lista, 10);
@@ -49,11 +51,11 @@ main()
     mostraL(&lista2);
 
 
-    cout << "\nFunção de Contar elementos da Lista \nTotal de elementos: " << totalL(&lista);
+    cout << "\n --- Função de Contar elementos da Lista \nTotal de elementos: " << totalL(&lista);
 
     cout << "\n";  mostraL(&lista);
 
-    cout << "\nFunção de Verificar se duas Listas são iguais";
+    cout << "\n --- Função de Verificar se duas Listas são iguais";
     if(igualL(&lista, &lista2))
     {
         cout << "\nSão iguais!\n";
@@ -67,7 +69,7 @@ main()
     mostraL(&lista2);
 
 
-    cout << "\nFuncao de inserir um valor no final da Lista:";
+    cout << "\n --- Funcao de inserir um valor no final da Lista:";
     cout << "\n";
     mostraL(&lista);
 
@@ -75,21 +77,61 @@ main()
 
     mostraL(&lista);
 
-    cout << "\nFuncao de remover o último elemento da Lista: " << endl;
+    cout << "\n --- Funcao de retornar o último elemento da Lista: " << endl;
+    mostraL(&lista);
+
+    int dado = leFinalL(&lista);
+
+    cout << "Valor do ultimo elemento: "<< dado << endl;
+
+    mostraL(&lista);
+
+    cout << "\n --- Funcao de remover o último elemento da Lista: " << endl;
+    mostraL(&lista);
+    cout << "Elemento removido do fim da lista: " << removeFinalL(&lista) << endl;
+    cout << "Elemento removido do fim da lista: " << removeFinalL(&lista) << endl;
+
     mostraL(&lista);
 
 
-    char dateStr [9];
+    cout << "\n --- Funcao de ler o valor de uma posição do elemento da Lista: " << endl;
+    mostraL(&lista);
 
-char timeStr [9];
+    valor = lePosicao(&lista,3);
 
-_strdate(dateStr);
+    cout << "\nValor do elemento da posicao 3 da lista: " << valor << endl;
 
-cout<<"Data"<<dateStr<<endl;
+    mostraL(&lista);
 
-_strtime(timeStr);
+    cout << "\n --- Funcao para realizar a UNIAO DE DUAS LISTAS " << endl;
 
-cout << "Hora" << timeStr;
+
+    cout << "Lista 1: "; mostraL(&lista);
+    cout << "Lista 2: "; mostraL(&lista2);
+
+    uniao(&lista,&lista2,&listauniao);
+
+    cout << "\nLista Uniao: " << endl;
+
+    mostraL(&listauniao);
+    cout << "\n";
+
+    cout << " --- Lista Uniao com o primeiro elemento retirado: " << endl;
+
+    removeInicioL(&listauniao);
+    mostraL(&listauniao);
+
+    cout << "\nLista 1: "; mostraL(&lista);
+    cout << "Lista 2: "; mostraL(&lista2);
+
+
+
+
+
+
+
+
+
 
 
 
