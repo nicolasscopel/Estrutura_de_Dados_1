@@ -396,7 +396,7 @@ bool inserePosicao(No** lista, int pos, int valor)
     }
     else
     {
-        cout << " teste4";
+        cout << " teste3";
         anterior->prox = novo;
         novo->prox = atual;
         return true;

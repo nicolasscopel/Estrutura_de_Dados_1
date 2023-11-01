@@ -90,6 +90,8 @@ void insereFinalL(No **lista, int valor)
     N->prox = novo;
 }
 
+
+
 ///retorna o valor do primeiro elemento da lista SEM removê-lo
 int leInicioL(No **lista)
 {
@@ -306,13 +308,13 @@ void uniao(No **lista1, No **lista2, No **listaSaida)
     while(l1 != NULL)
     {
         valor = l1->dado;
-        insereInicioL(&(*listaSaida),valor);
+        insereInicioL(listaSaida,valor);
         l1 = l1->prox;
     }
     while(l2 != NULL)
     {
         valor = l2->dado;
-        insereInicioL(&(*listaSaida),valor);
+        insereInicioL(listaSaida,valor);
         l2 = l2->prox;
     }
 
@@ -321,6 +323,126 @@ void uniao(No **lista1, No **lista2, No **listaSaida)
     destroiL(&l2);
 
     return;
+
+}
+
+///Intersecao de duas listas
+void interseccaoListas(No **lista1, No **lista2, No **listaSaida)
+{
+    No *l1 = *lista1;
+    No *l2 = *lista2;
+    No *ver = new No();
+
+    int valor;
+
+    while(l1 != NULL)
+    {
+        valor = l1->dado;
+
+        while(l2 != NULL)
+        {
+            if(valor == l2->dado && buscaL(listaSaida,valor) == NULL)
+            {
+                insereInicioL(listaSaida,valor);
+                break;
+
+            }
+            l2 = l2->prox;
+        }
+
+        l2 = *lista2;
+
+        l1 = l1->prox;
+    }
+
+    destroiL(&l1);
+    destroiL(&l2);
+
+    return;
+
+}
+
+///Insere um valor na posicao informada
+bool inserePosicao(No** lista, int pos, int valor)
+{
+
+    if (totalL(lista) - 1 < pos || pos < 0)
+    {
+        cout << "teste false";
+        return false;
+    }
+
+    No *anterior = NULL;
+    No *atual = *lista;
+    No *novo = new No();
+    int cont = 0;
+
+    novo->dado = valor;
+
+    while(cont != pos  && atual != NULL)
+    {
+        anterior = atual;
+        atual = atual->prox;
+        cont++;
+    }
+    cout << " teste";
+
+    if (anterior == NULL)
+    {
+        novo->prox = atual;
+        *lista = novo; //PARA ALTERAR O PONTEIRO DA LISTA PARA O NOVO NO INICIO
+        cout << " teste2";
+        return true;
+    }
+    else
+    {
+        cout << " teste4";
+        anterior->prox = novo;
+        novo->prox = atual;
+        return true;
+    }
+
+}
+
+///Insere valores ordenados crescentemente
+void insereOrdenado(No** lista, int valor)
+{
+
+    No *anterior = NULL;
+    No *atual = *lista;
+    No *novo = new No();
+
+    novo->dado = valor;
+
+    while( atual != NULL && valor > atual->dado)
+    {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if(anterior == NULL)
+    {
+        novo->prox = atual;
+        *lista = novo;
+        cout << " teste inicio ";
+        return;
+    }
+    if(atual == NULL)
+    {
+        cout << " teste meio ";
+        anterior->prox = novo;
+        novo->prox = NULL;
+
+        return;
+    }
+    else
+    {
+        anterior->prox = novo;
+        novo->prox = atual;
+        cout << " teste fim ";
+        return;
+    }
+
 
 }
 
