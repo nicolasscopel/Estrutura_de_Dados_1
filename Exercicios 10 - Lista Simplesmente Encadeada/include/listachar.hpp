@@ -5,7 +5,7 @@
 
 struct No
 {
-    int dado;
+    char dado;
     struct No *prox;
 };
 
@@ -53,7 +53,7 @@ void mostraL(No **lista)
 }
 
 ///insere no início da lista
-bool insereInicioL(No **lista, int valor)
+bool insereInicioL(No **lista, char valor)
 {
 
     No *novo = new No(); // aloca memória para o nó
@@ -68,7 +68,7 @@ bool insereInicioL(No **lista, int valor)
 }
 
 ///Insere um valor no final da lista
-void insereFinalL(No **lista, int valor)
+void insereFinalL(No **lista, char valor)
 {
     No *N = *lista;
     No *novo = new No();
@@ -91,9 +91,9 @@ void insereFinalL(No **lista, int valor)
 }
 
 ///retorna o valor do primeiro elemento da lista SEM removê-lo
-int leInicioL(No **lista)
+char leInicioL(No **lista)
 {
-    int dado =0;
+    char dado = ' ';
 
     if(vaziaL(lista) == false)
         dado = (*lista)->dado; //atribui o dado do início da lista para a variável dado
@@ -102,9 +102,9 @@ int leInicioL(No **lista)
 }
 
 ///retorna o valor do ULTIMO elemento da lista SEM removê-lo
-int leFinalL(No **lista)
+char leFinalL(No **lista)
 {
-    int dado = 0;
+    char dado = ' ';
 
     No *N = *lista;
 
@@ -122,10 +122,10 @@ int leFinalL(No **lista)
 }
 
 ///retorna o valor do primeiro elemento da lista e REMOVE o elemento
-int removeInicioL(No **lista)
+char removeInicioL(No **lista)
 {
     No* aux;
-    int dado;
+   char dado = ' ';
 
     if(vaziaL(lista) == false)
     {
@@ -141,11 +141,11 @@ int removeInicioL(No **lista)
 }
 
 ///retorna o valor do ultimo elemento da lista e REMOVE o elemento
-int removeFinalL(No **lista)
+char removeFinalL(No **lista)
 {
     No *anterior = NULL;
     No *fim = *lista;
-    int dado = 0;
+    char dado = ' ';
 
     if(vaziaL(lista) == false)
     {
@@ -178,7 +178,7 @@ int removeFinalL(No **lista)
 
 
 ///remover um nó da lista com um valor específico
-bool removeL(No **lista, int valor)
+bool removeL(No **lista, char valor)
 {
     No *anterior = NULL;
     No *atual = *lista;
@@ -210,7 +210,7 @@ bool removeL(No **lista, int valor)
 }
 
 
-No* buscaL(No **lista, int valor)
+No* buscaL(No **lista, char valor)
 {
     No *n = *lista;
     while (n != NULL)
@@ -251,6 +251,8 @@ bool igualL(No **lista1, No **lista2)
     No *N1 = *lista1;
     No *N2 = *lista2;
 
+
+
     while(N1 && N2)
     {
 
@@ -278,7 +280,7 @@ bool igualL(No **lista1, No **lista2)
 ///se posição=0, a função deve retornar o valor do primeiro nó da lista
 ///se posição=1, a função deve retornar o valor do segundo nó da lista
 
-int lePosicao(No **lista, int posicao)
+char lePosicao(No **lista, int posicao)
 {
     int cont = 0;
 
@@ -289,7 +291,7 @@ int lePosicao(No **lista, int posicao)
         n = n->prox;
         cont++;
     }
-     int valor = n->dado;
+    char valor = n->dado;
 
      return valor;
 
@@ -301,7 +303,7 @@ void uniao(No **lista1, No **lista2, No **listaSaida)
     No *l1 = *lista1;
     No *l2 = *lista2;
 
-    int valor;
+    char valor;
 
     while(l1 != NULL)
     {
