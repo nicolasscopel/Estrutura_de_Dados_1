@@ -414,7 +414,7 @@ void insereOrdenado(No** lista, int valor)
 
     novo->dado = valor;
 
-    while( atual != NULL && valor > atual->dado)
+    while(atual != NULL && valor > atual->dado)
     {
         anterior = atual;
         atual = atual->prox;
@@ -444,6 +444,49 @@ void insereOrdenado(No** lista, int valor)
     }
 
 
+}
+
+int verificaOrdem(No** lista)
+{
+    No *anterior = *lista;
+    No *atual = *lista;
+    atual = atual->prox;
+    int chave;
+
+    if(anterior->dado < atual->dado)
+    {
+        while(atual->prox != NULL)
+        {
+            anterior = atual;
+            atual = atual->prox;
+
+            if(anterior->dado > atual->dado)
+            {
+                chave = 2;
+                return chave;
+            }
+            chave = 0;
+        }
+    }
+
+    if(anterior->dado > atual->dado)
+    {
+
+        while(atual->prox != NULL)
+        {
+            anterior = atual;
+            atual = atual->prox;
+
+            if(anterior->dado < atual->dado)
+            {
+                chave = 2;
+                return chave;
+            }
+            chave = 1;
+        }
+    }
+
+    return chave;
 }
 
 

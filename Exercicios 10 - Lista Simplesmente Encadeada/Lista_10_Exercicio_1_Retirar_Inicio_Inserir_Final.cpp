@@ -19,11 +19,54 @@ using namespace std;
 
 #include "include/lista.hpp"
 
+void alteraLista (No **l, int qtd)
+{
+    int cont = 0;
+    int valor;
+
+    while(cont != qtd)
+    {
+       valor = removeInicioL(l);
+
+
+       insereFinalL(l,valor);
+
+
+        cont++;
+    }
+    return;
+
+}
+
 
 
 main()
 {
 	srand(time(NULL));
 	setlocale (LC_ALL, "Portuguese");
+
+	No *lista;
+	int qtd;
+	inicializaL(&lista);
+
+	insereFinalL(&lista,3);
+	insereFinalL(&lista,5);
+	insereFinalL(&lista,8);
+	insereFinalL(&lista,9);
+	insereFinalL(&lista,12);
+	insereFinalL(&lista,11);
+	insereFinalL(&lista,7);
+	insereFinalL(&lista,10);
+
+	mostraL(&lista);
+
+	cout << "\nInforme a quantidade de elementos que desejar retirar do inicio e adicionar ao final: ";
+	cin >> qtd;
+
+	alteraLista(&lista,qtd);
+
+	mostraL(&lista);
+
+
 
 }
