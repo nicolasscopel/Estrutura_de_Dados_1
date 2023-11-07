@@ -16,16 +16,45 @@ outra lista contendo todas as senhas não seguras existentes.
 #include <iomanip>
 #include <ctime>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
-#include "include/lista.hpp"
+#include "include/listastring.hpp"
+
+void naoSeguras(No **lista, No **listanaoseguras)
+{
+
+
+}
+
+
 
 
 
 main()
 {
-	srand(time(NULL));
-	setlocale (LC_ALL, "Portuguese");
+    srand(time(NULL));
+    setlocale (LC_ALL, "Portuguese");
+
+    No *lista;
+    No *listanaoseguras;
+    inicializaL(&lista);
+    inicializaL(&listanaoseguras);
+
+    insereFinalL(&lista,"senha1");
+    insereFinalL(&lista,"senha1");
+    insereFinalL(&lista,"senha1");
+    insereFinalL(&lista,"senha1");
+    insereFinalL(&lista,"senha1");
+    insereFinalL(&lista,"senha1");
+    insereFinalL(&lista,"senhaboa");
+    insereFinalL(&lista,"senhamuitoboa");
+    insereFinalL(&lista,"senhamuitoboa");
+    insereFinalL(&lista,"lix");
+
+    naoSeguras(&lista,&listanaoseguras);
+    mostraL(&listanaoseguras);
+
 
 }

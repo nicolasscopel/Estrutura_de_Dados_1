@@ -29,4 +29,26 @@ main()
 	srand(time(NULL));
 	setlocale (LC_ALL, "Portuguese");
 
+	No *lista;
+	inicializaL(&lista);
+
+	insereFinalL(&lista,67);
+	insereFinalL(&lista,54);
+	insereFinalL(&lista,12);
+	insereFinalL(&lista,1);
+	insereFinalL(&lista,6);
+	insereFinalL(&lista,2);
+	insereFinalL(&lista,2);
+	insereFinalL(&lista,0);
+	insereFinalL(&lista,-3);
+	insereFinalL(&lista,-3);
+
+
+
+
+	mostraL(&lista);
+
+	ordenarL(&lista);
+
+	mostraL(&lista);
 }
