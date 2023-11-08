@@ -5,7 +5,7 @@
 
 struct No
 {
-    int dado;
+    string dado;
     struct No *prox;
 };
 
@@ -53,7 +53,7 @@ void mostraL(No **lista)
 }
 
 ///insere no início da lista
-bool insereInicioL(No **lista, int valor)
+bool insereInicioL(No **lista, string valor)
 {
 
     No *novo = new No(); // aloca memória para o nó
@@ -68,7 +68,7 @@ bool insereInicioL(No **lista, int valor)
 }
 
 ///Insere um valor no final da lista
-void insereFinalL(No **lista, int valor)
+void insereFinalL(No **lista, string valor)
 {
     No *N = *lista;
     No *novo = new No();
@@ -93,9 +93,9 @@ void insereFinalL(No **lista, int valor)
 
 
 ///retorna o valor do primeiro elemento da lista SEM removê-lo
-int leInicioL(No **lista)
+string leInicioL(No **lista)
 {
-    int dado =0;
+    string dado = "";
 
     if(vaziaL(lista) == false)
         dado = (*lista)->dado; //atribui o dado do início da lista para a variável dado
@@ -104,9 +104,9 @@ int leInicioL(No **lista)
 }
 
 ///retorna o valor do ULTIMO elemento da lista SEM removê-lo
-int leFinalL(No **lista)
+string leFinalL(No **lista)
 {
-    int dado = 0;
+    string dado = "";
 
     No *N = *lista;
 
@@ -124,10 +124,10 @@ int leFinalL(No **lista)
 }
 
 ///retorna o valor do primeiro elemento da lista e REMOVE o elemento
-int removeInicioL(No **lista)
+string removeInicioL(No **lista)
 {
     No* aux;
-    int dado;
+    string dado = "";
 
     if(vaziaL(lista) == false)
     {
@@ -143,11 +143,11 @@ int removeInicioL(No **lista)
 }
 
 ///retorna o valor do ultimo elemento da lista e REMOVE o elemento
-int removeFinalL(No **lista)
+string removeFinalL(No **lista)
 {
     No *anterior = NULL;
     No *fim = *lista;
-    int dado = 0;
+    string dado = "";
 
     if(vaziaL(lista) == false)
     {
@@ -180,7 +180,7 @@ int removeFinalL(No **lista)
 
 
 ///remover um nó da lista com um valor específico
-bool removeL(No **lista, int valor)
+bool removeL(No **lista, string valor)
 {
     No *anterior = NULL;
     No *atual = *lista;
@@ -212,7 +212,7 @@ bool removeL(No **lista, int valor)
 }
 
 
-No* buscaL(No **lista, int valor)
+No* buscaL(No **lista, string valor)
 {
     No *n = *lista;
     while (n != NULL)
@@ -280,7 +280,7 @@ bool igualL(No **lista1, No **lista2)
 ///se posição=0, a função deve retornar o valor do primeiro nó da lista
 ///se posição=1, a função deve retornar o valor do segundo nó da lista
 
-int lePosicao(No **lista, int posicao)
+string lePosicao(No **lista, int posicao)
 {
     int cont = 0;
 
@@ -291,7 +291,7 @@ int lePosicao(No **lista, int posicao)
         n = n->prox;
         cont++;
     }
-     int valor = n->dado;
+     string valor = n->dado;
 
      return valor;
 
@@ -303,7 +303,7 @@ void uniao(No **lista1, No **lista2, No **listaSaida)
     No *l1 = *lista1;
     No *l2 = *lista2;
 
-    int valor;
+    string valor = "";
 
     while(l1 != NULL)
     {
@@ -333,7 +333,7 @@ void interseccaoListas(No **lista1, No **lista2, No **listaSaida)
     No *l2 = *lista2;
     No *ver = new No();
 
-    int valor;
+    string valor;
 
     while(l1 != NULL)
     {
@@ -363,7 +363,7 @@ void interseccaoListas(No **lista1, No **lista2, No **listaSaida)
 }
 
 ///Insere um valor na posicao informada
-bool inserePosicao(No** lista, int pos, int valor)
+bool inserePosicao(No** lista, int pos, string valor)
 {
 
     if (totalL(lista) - 1 < pos || pos < 0)
@@ -405,7 +405,7 @@ bool inserePosicao(No** lista, int pos, int valor)
 }
 
 ///Insere valores ordenados crescentemente
-void insereOrdenado(No** lista, int valor)
+void insereOrdenado(No** lista, string valor)
 {
 
     No *anterior = NULL;
@@ -500,7 +500,7 @@ void ordenarL(No** lista)
 
     No *atual = *lista;
     No *proximo;
-    int valor;
+    string valor;
 
     while(verificaOrdem(lista) == 2)
     {
