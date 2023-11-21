@@ -26,6 +26,12 @@ main()
 	setlocale (LC_ALL, "Portuguese");
 
 	Lista lista = Lista();
+	Lista aux = Lista();
+	Lista lista2 = Lista();
+	Lista listauniao = Lista();
+	Lista listainterseccao = Lista();
+
+
     Funcionario x;
     float media = 0;
 
@@ -55,7 +61,7 @@ main()
     cout << "\n";
 	cout << lista << endl;
 	insereInicioL(&lista,Funcionario(1,"Nicolas",20,1000.f));
-	insereFimL(&lista,Funcionario(32,"Marcos",15, 599.f));
+	insereInicioL(&lista,Funcionario(32,"Marcos",15, 599.f));
 	insereFimL(&lista,Funcionario(21,"Igor",65, 501.f));
 	cout << lista << endl;
 
@@ -73,12 +79,44 @@ main()
     cout << "\n --- IMPRIMIR OS FUNCIONARIOS COM SALARIO MENOR QUE A MEDIA SALARIAL DA EMPRESA ---"<< endl;
     cout << lista << endl;
     imprimeMenorMedia(&lista,media);
-    cout << "\n " <<lista << endl;
+    cout << "\n" <<lista << endl;
 
     cout << "\n --- ORDENAR LISTA POR NOME ---"<< endl;
     cout << lista << endl;
     ordenaL(&lista);
-    cout << "\n " <<lista << endl;
+    cout << "\n" <<lista << endl;
+
+    cout << "\n --- INVERTER A LISTA ---" << endl;
+    cout << lista;
+    inverteL(&lista,&aux);
+    cout << "\n" << lista << endl;
+
+    destroiL(&aux);
+
+    cout << "\n --- ORDENAR A LISTA POR IDADDE ---" << endl;
+    cout << lista << endl;
+    ordenaIdade(&lista,&aux);
+
+
+    insereInicioL(&lista2,Funcionario(1,"Juliana",90,674.f));
+	insereInicioL(&lista2,Funcionario(87,"Antonela",25, 123.f));
+	insereFimL(&lista2,Funcionario(21,"Camila",23, 794.f));
+
+    cout << "\n --- UNIÃO DE DUAS LISTAS ---" << endl;
+    cout << lista << endl;
+    cout << lista2 << endl;
+    uniaoL(&lista,&lista2,&listauniao);
+    cout << "\n" << lista << endl;
+    cout << lista2 << endl;
+    cout << "\n" << listauniao << endl;
+
+
+    cout << "\n --- INTERSECÇÃO DE DUAS LISTAS PELO CÓDIGO DO FUNCIONÁRIO ---" << endl;
+    cout << lista << endl;
+    cout << lista2 << endl;
+    interseccaoL(&lista,&lista2,&listainterseccao);
+
+
 
 
 

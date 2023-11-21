@@ -1,11 +1,87 @@
 #ifndef _HPP_LISTA_DESCRITOR
 #define _HPP_LISTA_DESCRITOR
 
+#include <cstring>
+#include <string>
+#include <iostream>
 
+
+
+struct Carro
+{
+
+    std::string placa;
+    int ano;
+    std::string fabricante;
+    std::string modelo;
+    Carro() // construtor
+    {
+        placa = "";
+        ano = 0;
+        fabricante="";
+        modelo="";
+    }
+
+    Carro( std::string p, int a, std::string f, std::string m) // construtor
+    {
+        placa = p;
+        ano = a;
+        fabricante = f ;
+        modelo = m;
+    }
+
+    //operadores usados na busca e remoção de nós
+    bool operator!=(const Carro& c)
+    {
+        if(placa != c.placa)
+            return true;
+        if(ano != c.ano)
+            return true;
+        if(fabricante != c.fabricante)
+            return true;
+        if(modelo != c.modelo)
+            return true;
+
+        return false;
+    }
+
+    bool operator==(const Carro& c)
+    {
+        if(placa != c.placa)
+            return false;
+       if(ano != c.ano)
+            return false;
+       if(fabricante != c.fabricante)
+            return false;
+        if(modelo != c.modelo)
+            return false;
+
+        return true;
+    }
+
+    //operador usado na ordenação
+    bool operator > (const Carro& c)
+    {
+        if(strcmpi(placa.c_str(), c.placa.c_str()) > 0 )
+            return true;
+        else
+            return false;
+    }
+
+    /*
+     bool operator < (const Carro& f)
+    {
+        if(nome < f.nome )
+            return true;
+        else
+            return false;
+    }
+    */
+};
 
 struct No
 {
-    int dado;
+    Carro dado;
     struct No *prox;
     No() // construtor
     {
@@ -29,11 +105,20 @@ struct Lista
 
 
 /// quando cout receber uma struct No
+std::ostream& operator<<(std::ostream& os, const Carro &c)
+{
+    /// cout << n
+    return os << "[" << c.placa << ", " << c.ano << ", " <<  c.fabricante << ", " <<  c.modelo << "]";
+}
+
+/// quando cout receber uma struct No
 ostream& operator<<(ostream& os, const No *n)
 {
     /// cout << n
     return os << n->dado;
 }
+
+
 
 /// quanto cout receber uma struct Lista
 ostream& operator << (ostream& os, Lista &l)
@@ -91,7 +176,7 @@ bool vaziaL(Lista *lista)
 }
 
 ///insere no início da lista
-bool insereInicioL(Lista *lista, int valor)
+bool insereInicioL(Lista *lista, Carro valor)
 {
 
     No *novo = new No();
@@ -107,7 +192,7 @@ bool insereInicioL(Lista *lista, int valor)
 
     return true;
 }
-bool insereFimL(Lista *lista, int valor)
+bool insereFimL(Lista *lista, Carro valor)
 {
 
     No *novo = new No();
@@ -133,14 +218,13 @@ bool insereFimL(Lista *lista, int valor)
 }
 
 
-
-bool removeL(Lista *lista, int valor)
+bool removeL(Lista *lista, string valor)
 {
     No *anterior = nullptr;
     No *atual = lista->inicio;
     ///fica no laço enquanto tiver elementos na lista
     /// e não encontrar o valor procurado
-    while(atual && atual->dado != valor)
+    while(atual && atual->dado.placa != valor)
     {
         anterior = atual;
         atual = atual->prox;
@@ -171,7 +255,40 @@ bool removeL(Lista *lista, int valor)
 
 }
 
-No* buscaL(Lista *lista, int valor)
+
+bool removeFabricanteL(Lista *lista, string valor)
+{
+    No *n = lista->inicio;
+   while(n)
+   {
+        if(n->dado.fabricante == valor && n->dado.ano > 2000)
+        {
+            removeL(lista,n->dado.placa);
+        }
+
+        n = n->prox;
+   }
+   return true;
+
+}
+
+void consultaPlacaL(Lista *lista, string valor)
+{
+    No *n = lista->inicio;
+   while(n)
+   {
+        if(n->dado.fabricante == valor)
+        {
+            cout << n->dado.placa << " - ";
+        }
+
+        n = n->prox;
+   }
+   return;
+
+}
+
+No* buscaL(Lista *lista, Carro valor)
 {
     No *n = lista->inicio;
     while (n)
@@ -184,6 +301,183 @@ No* buscaL(Lista *lista, int valor)
 
     return nullptr;
 }
+
+///• Função para ler um funcionário no início da lista;
+Carro lerInicioL(Lista *lista)
+{
+    Carro n;
+    if(lista->inicio == NULL)
+    {
+        return n ;
+    }
+    n = lista->inicio->dado;
+
+    return n;
+}
+
+///• Função para ler um funcionário no final da lista:
+Carro lerFimL(Lista *lista)
+{
+    Carro f;
+
+    if(lista->inicio == NULL)
+    {
+        cout << "\nLista Vazia!";
+        return f;
+    }
+    f = lista->fim->dado;
+    return f;
+}
+
+
+///• Função para remover um funcionário do início da lista;
+Carro removeInicio(Lista *lista)
+{
+    Carro n;
+    No *aux;
+
+    if(lista->inicio == NULL)
+    {
+        cout << "\nLista Vazia";
+        return n;
+
+    }
+    if(lista->tamanho == 1)
+    {
+        n = lista->inicio->dado;
+        lista->tamanho--;
+        delete lista->inicio;
+        lista->inicio = NULL;
+        lista->fim = NULL;
+        return n;
+    }
+
+    n = lista->inicio->dado;
+    lista->tamanho--;
+    aux = lista->inicio;
+    lista->inicio = lista->inicio->prox;
+
+    delete aux;
+    return n;
+
+}
+
+
+
+
+
+///• Função para ordenar a lista de funcionários em ordem alfabética:
+void ordenaModeloL(Lista *lista)
+{
+    No *atual = lista->inicio;
+    Carro aux;
+    int trocas;
+
+
+    if(lista->inicio == NULL)
+    {
+        cout << "\nLista Vazia";
+        return;
+    }
+
+    do
+    {
+        trocas = 0;
+        while(atual->prox != NULL)
+        {
+            if(atual->dado.modelo > atual->prox->dado.modelo)
+            {
+                aux = atual->dado;
+                atual->dado = atual->prox->dado;
+                atual->prox->dado = aux;
+                trocas++;
+            }
+            atual = atual->prox;
+        }
+        atual = lista->inicio;
+    }
+    while (trocas != 0);
+        return;
+}
+
+void ordenaAnoL(Lista *lista)
+{
+    No *atual = lista->inicio;
+    Carro aux;
+    int trocas;
+
+
+    if(lista->inicio == NULL)
+    {
+        cout << "\nLista Vazia";
+        return;
+    }
+
+    do
+    {
+        trocas = 0;
+        while(atual->prox != NULL)
+        {
+            if(atual->dado.ano > atual->prox->dado.ano)
+            {
+                aux = atual->dado;
+                atual->dado = atual->prox->dado;
+                atual->prox->dado = aux;
+                trocas++;
+            }
+            atual = atual->prox;
+        }
+        atual = lista->inicio;
+    }
+    while (trocas != 0);
+        return;
+}
+
+void inverteL(Lista *lista, Lista *aux)
+{
+
+     if(lista->inicio == NULL)
+    {
+        cout << "\nLista Vazia";
+        return;
+    }
+
+    Carro n;
+
+    while(lista->inicio != NULL)
+    {
+        n = removeInicio(lista);
+        insereInicioL(aux,n);
+
+    }
+
+     while(aux->inicio != NULL)
+    {
+        n = removeInicio(aux);
+        insereFimL(lista,n);
+
+    }
+
+    return;
+
+
+}
+
+Lista copiaL(Lista *l1, Lista *l2)
+{
+    No *n = l1->inicio;
+
+    while(n!=NULL)
+    {
+        insereFimL(l2, n->dado);
+        n = n->prox;
+    }
+
+}
+
+
+
+
 
 
 #endif // _HPP_LISTA_DESCRITOR

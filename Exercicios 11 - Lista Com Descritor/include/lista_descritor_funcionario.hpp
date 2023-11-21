@@ -409,6 +409,128 @@ void ordenaL(Lista *lista)
         return;
 }
 
+void inverteL(Lista *lista, Lista *aux)
+{
+
+     if(lista->inicio == NULL)
+    {
+        cout << "\nLista Vazia";
+        return;
+    }
+
+    Funcionario n;
+
+    while(lista->inicio != NULL)
+    {
+        n = removeInicio(lista);
+        insereInicioL(aux,n);
+
+    }
+
+     while(aux->inicio != NULL)
+    {
+        n = removeInicio(aux);
+        insereFimL(lista,n);
+
+    }
+
+    return;
+
+
+}
+
+Lista copiaL(Lista *l1, Lista *l2)
+{
+    No *n = l1->inicio;
+
+    while(n!=NULL)
+    {
+        insereFimL(l2, n->dado);
+        n = n->prox;
+    }
+
+}
+
+void ordenaIdade(Lista *l1, Lista *l2)
+{
+    copiaL(l1, l2);
+    No *n1 = l2->inicio;
+    Funcionario aux;
+
+    while(n1!=NULL)
+    {
+        No *n2 = n1;
+        while(n2!=NULL)
+        {
+            if(n1->dado.idade > n2->dado.idade)
+            {
+                aux = n1->dado;
+                n1->dado = n2->dado;
+                n2->dado = aux;
+            }
+
+            n2 = n2->prox;
+        }
+        n1 = n1->prox;
+    }
+
+    mostraL(l2);
+    destroiL(l2);
+}
+void uniaoL(Lista *lista1, Lista *lista2, Lista *uniao)
+{
+     if(lista1->inicio == NULL && lista2->inicio == NULL)
+    {
+        cout << "\nListas Vazias";
+        return;
+    }
+    Funcionario func;
+    No *atual = lista1->inicio;
+
+    while(atual != NULL)
+    {
+        func = atual->dado;
+        insereFimL(uniao,func);
+        atual = atual->prox;
+    }
+
+    No *atual2 = lista2->inicio;
+
+    while(atual2!= NULL)
+    {
+        func = atual2->dado;
+        insereFimL(uniao,func);
+        atual2 = atual2->prox;
+    }
+
+    return;
+
+}
+
+void interseccaoL(Lista *lista, Lista *lista2, Lista *listaint)
+{
+     No *n1 = lista->inicio;
+    while(n1!=NULL)
+    {
+        No *n2 = lista2->inicio;
+        while(n2!=NULL)
+        {
+            if(n1->dado.codigo==n2->dado.codigo)
+            {
+                insereFimL(listaint, n1->dado);
+                insereFimL(listaint,n2->dado);
+            }
+
+            n2=n2->prox;
+        }
+        n1=n1->prox;
+    }
+
+    mostraL(listaint);
+    destroiL(listaint);
+
+}
+
 
 
 
