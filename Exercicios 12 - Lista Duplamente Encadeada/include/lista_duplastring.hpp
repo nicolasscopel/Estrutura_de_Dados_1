@@ -1,76 +1,10 @@
 #ifndef _HPP_LISTA_DUPLA
 #define _HPP_LISTA_DUPLA
 
-struct Animal
-{
-    int codigo;
-    int idade;
-    float peso;
-    Animal() // construtor
-    {
-        codigo = 0;
-        idade = 0;
-        peso = 0.0f;
-    }
-
-    Animal(int cod,  int ida, float pes) // construtor
-    {
-        codigo = cod;
-        idade = ida;
-        peso = pes;
-    }
-
-    //operadores usados na busca e remoção de nós
-    bool operator!=(const Animal& a)
-    {
-        if(codigo != a.codigo)
-            return true;
-        if(idade != a.idade)
-            return true;
-        if(peso != a.peso)
-            return true;
-
-        return false;
-    }
-
-    bool operator==(const Animal& a)
-    {
-        if(codigo != a.codigo)
-            return false;
-        if(idade != a.idade)
-            return false;
-        if(peso != a.peso)
-            return false;
-
-        return true;
-    }
-
-    /*
-    //operador usado na ordenação
-    bool operator > (const Animal& a)
-    {
-        if(strcmpi(nome.c_str(), a.nome.c_str()) > 0 )
-            return true;
-        else
-            return false;
-    }
-    */
-
-    bool operator < (const Animal& a)
-    {
-        if(codigo < a.codigo)
-            return true;
-        else
-            return false;
-    }
-
-};
-
-
 
 struct No
 {
-    Animal dado;
+    string dado;
     No *prox;
     No *ant;
     No() // construtor
@@ -99,7 +33,7 @@ struct Lista
 ostream& operator<<(ostream& os, const No *n)
 {
     /// cout << n
-    return os << n->dado.codigo; ///.CODIGO OU IDADE OU PESO
+    return os << n->dado;
 }
 
 /// quanto cout receber uma struct Lista
@@ -146,7 +80,7 @@ void mostraL(Lista *lista)
     cout << "L[" << lista->tamanho << "]:{";
     while(n)
     {
-        cout << "["<< n->dado.codigo << ", " << n->dado.idade << ", " << n->dado.peso << "]";
+        cout << n;
         n = n->prox;
         if(n)
             cout << ", ";
@@ -160,7 +94,7 @@ void mostrarInversoL(Lista *lista)
     cout << "L[" << lista->tamanho << "]:{";
     while(n)
     {
-        cout << "["<< n->dado.codigo << ", " << n->dado.idade << ", " << n->dado.peso << "]";
+        cout << n;
         n = n->ant;
 
         if(n)
@@ -171,7 +105,7 @@ void mostrarInversoL(Lista *lista)
 
 
 ///insere no início da lista
-bool insereInicioL(Lista *lista, Animal valor)
+bool insereInicioL(Lista *lista, string valor)
 {
 
     No *novo = new No();
@@ -194,7 +128,7 @@ bool insereInicioL(Lista *lista, Animal valor)
 }
 
 ///insere no final da lista
-bool insereFinalL(Lista *lista, Animal valor)
+bool insereFinalL(Lista *lista, string valor)
 {
 
     No *novo = new No();
@@ -216,12 +150,12 @@ bool insereFinalL(Lista *lista, Animal valor)
     return true;
 }
 
-No* buscaL(Lista *lista, int valor)
+No* buscaL(Lista *lista, string valor)
 {
     No *n = lista->inicio;
     while (n)
     {
-        if (n->dado.codigo == valor)
+        if (n->dado == valor)
             return n;
 
         n = n->prox;
@@ -230,15 +164,15 @@ No* buscaL(Lista *lista, int valor)
     return nullptr;
 }
 
-Animal removeInicioL(Lista *lista)
+string removeInicioL(Lista *lista)
 {
 
     No *no = new No();
-    Animal valor;
+    string valor = "";
 
     if(lista->inicio == nullptr)
     {
-        return valor;
+        return 0;
     }
 
     valor = lista->inicio->dado;
@@ -268,15 +202,15 @@ Animal removeInicioL(Lista *lista)
 
 }
 
-Animal removeFinalL(Lista *lista)
+string removeFinalL(Lista *lista)
 {
 
     No *no = new No();
-    Animal valor;
+    string valor = "";
 
     if(lista->inicio == nullptr)
     {
-        return valor;
+        return 0;
     }
 
 
@@ -320,9 +254,7 @@ bool removerNoL(Lista *lista, No *no)
         else
             lista->inicio->ant = nullptr;
 
-    }
-    else   /// elemento está no meio ou no fim
-    {
+    }else{ /// elemento está no meio ou no fim
 
         no->ant->prox = no->prox;
         if (!no->prox)/// se for retirado último da lista
@@ -338,7 +270,7 @@ bool removerNoL(Lista *lista, No *no)
     return true;
 }
 
-bool removeL(Lista *lista, int valor)
+bool removeL(Lista *lista, string valor)
 {
     No* no = buscaL(lista, valor);
 
@@ -352,7 +284,7 @@ bool removeL(Lista *lista, int valor)
 
 
 ///remove da lista todas as ocorrências do parâmetro valor
-void removeTodos(Lista *lista, Animal valor)
+void removeTodos(Lista *lista, string valor)
 {
     No *atual = lista->inicio;
 
@@ -403,7 +335,7 @@ void ordenaL(Lista *lista)
         atual = lista->inicio;
     }
     while (trocas != 0);
-    return;
+        return;
 }
 
 Lista copiaL(Lista *l1, Lista *l2)
@@ -440,7 +372,7 @@ Lista leMaiores(Lista *lista, int x)
     copiaL(lista,&copia);
     ordenaL(&copia);
 
-    aux = copia.inicio;  ///UTILIZA O PONTO POIS FOI CRIADO DENTRO DA FUNÇÃO (COPIA)
+   aux = copia.inicio;  ///UTILIZA O PONTO POIS FOI CRIADO DENTRO DA FUNÇÃO (COPIA)
 
 
     while(cont < x)
@@ -455,54 +387,43 @@ Lista leMaiores(Lista *lista, int x)
 
 }
 
-void mostrar3UltL(Lista *lista)
+void mostraCaminhoVoltaL(Lista *lista)
 {
-    No *n = lista->fim;
-    No *pen;
-    No *antpen;
-    if(n->ant != nullptr)
-    {
-        pen = lista->fim->ant;
-    }
-    if(pen->ant != nullptr)
-    {
-        antpen = pen->ant;
-    }
+    string valor;
+    cout << "\nVOLTA: ";
 
+    Lista volta = Lista();
 
-    if(n)
-    {
-        cout << "L: {";
-        cout << "["<< n->dado.codigo << ", " << n->dado.idade << ", " << n->dado.peso << "] , ";
-    }
-
-    if(pen)
-        cout << "["<< pen->dado.codigo << ", " << pen->dado.idade << ", " << pen->dado.peso << "] , ";
-    if(antpen)
-        cout << "["<< antpen->dado.codigo << ", " << antpen->dado.idade << ", " << antpen->dado.peso << "]";
-
-    if(n)
-        cout << "} ";
-
-}
-
-void separaListaP(Lista *l, Lista *menos, Lista *mais)
-{
-    No *no = l->inicio;
+    No *no = lista->inicio;
 
     while(no)
     {
-        if(no->dado.peso <= 50)
-        {
-            insereFinalL(menos,no->dado);
-        }
-        else
-        {
-            insereFinalL(mais,no->dado);
-        }
-        no = no->prox;
+        valor = no->dado;
 
+        if(valor == "esquerda")
+        {
+            insereInicioL(&volta,"direita");
+        }
+        if(valor == "direita")
+        {
+             insereInicioL(&volta,"esquerda");
+        }
+        if(valor == "cima")
+        {
+             insereInicioL(&volta,"baixo");
+        }
+        if(valor == "baixo")
+        {
+             insereInicioL(&volta,"cima");
+        }
+
+        no = no->prox;
     }
+
+    mostraL(&volta);
+
+
+    destroiL(&volta);
 
 }
 
