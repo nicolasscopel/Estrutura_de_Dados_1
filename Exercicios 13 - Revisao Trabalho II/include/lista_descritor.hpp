@@ -185,6 +185,20 @@ No* buscaL(Lista *lista, int valor)
     return nullptr;
 }
 
+bool buscaElementoL(Lista *lista, int valor)
+{
+    No *n = lista->inicio;
+    while (n)
+    {
+        if (n->dado == valor)
+            return true;
+
+        n = n->prox;
+    }
+
+    return false;
+}
+
 
 Lista copiaL(Lista *l1, Lista *l2)
 {
@@ -409,6 +423,63 @@ float verificaMedianaL(Lista *lista)
 
 void verificaModaL(Lista *lista)
 {
+    Lista aparece = Lista();
+    Lista moda = Lista();
+    int cont,chave, maximo = 0;
+    No *atual = lista->inicio;
+    No *controle = lista->inicio;
+
+    while(controle)
+    {
+        chave = controle->dado;
+        int cont = 0;
+
+        while(atual)
+        {
+            if(atual->dado == chave)
+            {
+                cont++;
+            }
+
+            atual = atual->prox;
+        }
+        if(cont > maximo)
+        {
+            maximo = cont;
+        }
+        insereFimL(&aparece,cont);
+
+        atual = lista->inicio;
+
+        controle = controle->prox;
+    }
+
+    atual = lista->inicio;
+    controle = aparece.inicio;
+
+    while(atual)
+    {
+        if(controle->dado == maximo)
+        {
+            if(buscaElementoL(&moda,atual->dado) == false)
+            {
+                insereFimL(&moda,atual->dado);
+            }
+        }
+
+        atual = atual->prox;
+        controle = controle->prox;
+    }
+
+
+
+    mostraL(&moda);
+    destroiL(&moda);
+    destroiL(&aparece);
+
+
+    return;
+
 
 }
 

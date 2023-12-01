@@ -46,4 +46,3 @@ adiciona L2 1
 adiciona L2 2
 mostra L2 C
 moda L2
-

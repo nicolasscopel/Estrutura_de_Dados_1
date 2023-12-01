@@ -31,7 +31,7 @@ int main()
 
 
 
-    ifstream arq ("entrada.txt");
+    ifstream arq ("entrada2.txt");
 
     if (!arq.is_open())
     {
@@ -186,7 +186,7 @@ int main()
             if(lista == "L2")
             {
                 removeTodos(&L2);
-                cout << "\nTodos os valores de L1 foram removidos.";
+                cout << "\nTodos os valores de L2 foram removidos.";
 
             }
 
@@ -238,10 +238,12 @@ int main()
                  if(vaziaL(&L1))
                  {
                      cout << "\nModa (s) L1: VAZIA! ";
+
                  }
                  else
                  {
                      cout << "\nModa (s) L1: ";
+                     verificaModaL(&L1);
 
                  }
              }
@@ -250,9 +252,7 @@ int main()
              {
                  if(vaziaL(&L2))
                  {
-
                      cout << "\nModa (s) L2: VAZIA! ";
-                     verificaModaL(&L1);
                  }
                  else
                  {
@@ -260,7 +260,6 @@ int main()
                      verificaModaL(&L2);
 
                  }
-
              }
 
 
