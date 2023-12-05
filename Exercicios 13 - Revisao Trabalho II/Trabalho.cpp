@@ -31,7 +31,7 @@ int main()
 
 
 
-    ifstream arq ("entrada2.txt");
+    ifstream arq ("entrada.txt");
 
     if (!arq.is_open())
     {

@@ -457,6 +457,7 @@ void verificaModaL(Lista *lista)
     atual = lista->inicio;
     controle = aparece.inicio;
 
+
     while(atual)
     {
         if(controle->dado == maximo)
@@ -472,8 +473,14 @@ void verificaModaL(Lista *lista)
     }
 
 
+    if(maximo == 1)
+    {
+        cout << "VAZIA!";
+    }
+    else{
+        mostraL(&moda);
+    }
 
-    mostraL(&moda);
     destroiL(&moda);
     destroiL(&aparece);
 
