@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-#include "include/lista_descritor.hpp"
+#include "include/.hpp"
 
 
 int main()
@@ -26,11 +26,11 @@ int main()
 
 
 
-    ifstream arq ("entrada2.txt");
+    ifstream arq ("entrada.txt");
 
     if (!arq.is_open())
     {
-        cout << "Erro: não foi possível abrir o arquivo texto.\n";
+        cout << "Erro: nï¿½o foi possï¿½vel abrir o arquivo texto.\n";
         return 0;
     }
 
@@ -41,7 +41,7 @@ int main()
         strBuffer = stringstream(linha);
         strBuffer >> op;
 
-        if(op == "adiciona")
+        if(op == "")
         {
 
 
@@ -59,17 +59,17 @@ int main()
 
 
         }
-        else if(op == "MOSTRADADOSFILAS")
+        else if(op == "")
         {
 
 
         }
 
-        else if(op == "MOSTRAMENORQTD")
+        else if(op == "")
         {
 
         }
-        else if(op == "REMOVEFILA")
+        else if(op == "")
         {
 
 
